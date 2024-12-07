@@ -31,6 +31,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 4px;
     justify-content: space-between;
 }
 
@@ -48,19 +49,26 @@ body {
 }
 
 .search button {
+    display: flex;
+    justify-content: center;
     border: 0;
+    align-items: center;
     outline: 0;
     background-color: #ebfffc;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
-
-
+    width: 55px;
+    height: 55px;
+    cursor: pointer;  
 }
 
-.search button img {
+
+.search button img[alt="search"] {
     width: 18px;
+    
+}
+
+.search button img[alt="current_location"] {
+    width: 40px;  
 }
 
 .weathericon {

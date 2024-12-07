@@ -2,11 +2,16 @@ const apikey = "177d4884ae187c36979920b7a5d9511c";
 const apiurl =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 const searchbox = document.querySelector(".search input");
-const searchbtn = document.querySelector(".search button");
+const searchbtn = document.querySelectorAll(".search button");
 const weather_icon = document.querySelector(".weathericon");
 
-async function checkWeather(city) {
-  const response = await fetch(apiurl + city + `&appid=${apikey}`);
+async function checkWeather(city,coord=[]) {
+  let response;
+  if(coord.length==0){
+  response = await fetch(apiurl + city + `&appid=${apikey}`);}
+  else if(coord[0]!=undefined && coord[1]!=undefined){
+  response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coord[0]}&lon=${coord[1]}&appid=${apikey}&units=metric`);}
+  
   if (response.status == 404) {
     document.querySelector(".error").style.display = "block";
     document.querySelector(".weather").style.display = "none";
@@ -37,7 +42,22 @@ async function checkWeather(city) {
     document.querySelector(".error").style.display = "none"; 
   }
 }
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(succes)
+    } else { 
+      alert(`Can't Access Location`);
+    }
+  }
+  function succes(position){
+    const lat=position.coords.latitude
+    const lon=position.coords.longitude
+    checkWeather(null,[lat,lon])
+}
 
-searchbtn.addEventListener("click", () => {
-  checkWeather(searchbox.value);
+searchbtn[0].addEventListener("click", () => {
+  checkWeather(city=searchbox.value);
+});
+searchbtn[1].addEventListener("click", () => {
+  getLocation();
 });
