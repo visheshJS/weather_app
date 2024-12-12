@@ -13,3 +13,6 @@ A responsive and user-friendly web application that provides real-time weather u
 - 🎨 **CSS**
 - 🔧 **JavaScript**
 - 🌩️ **OpenWeather API**
+
+## Disclaimer
+This Weather App is built **for educational purposes** only. It fetches weather data from a free API and does not collect or store any personal information. The app is a basic demonstration of **front-end development** and is not intended for commercial use.
